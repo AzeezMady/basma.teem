@@ -32,14 +32,14 @@ function updateProgress() {
 /* ══════════════════════════════════════════
    NAVBAR — STICKY + BLUR ON SCROLL
 ══════════════════════════════════════════ */
-const navbar  = document.getElementById('navbar');
-const backTop = document.getElementById('back-top');
+const navbar = document.getElementById('navbar');
+const floatingActions = document.querySelector('.floating-actions');
 
 function onScroll() {
   updateProgress();
   const scrolled = window.scrollY > 60;
-  if (navbar)  navbar.classList.toggle('scrolled', scrolled);
-  if (backTop) backTop.classList.toggle('visible', scrolled);
+  if (navbar) navbar.classList.toggle('scrolled', scrolled);
+  if (floatingActions) floatingActions.classList.toggle('visible', scrolled);
 }
 
 window.addEventListener('scroll', onScroll, { passive: true });
@@ -47,6 +47,7 @@ window.addEventListener('scroll', onScroll, { passive: true });
 /* ══════════════════════════════════════════
    BACK TO TOP
 ══════════════════════════════════════════ */
+const backTop = document.getElementById('back-top');
 if (backTop) {
   backTop.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -56,7 +57,7 @@ if (backTop) {
 /* ══════════════════════════════════════════
    MOBILE MENU
 ══════════════════════════════════════════ */
-const hamburger  = document.getElementById('hamburger');
+const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobile-menu');
 let menuOpen = false;
 
@@ -125,7 +126,7 @@ window.createRipple = createRipple;
 /* ══════════════════════════════════════════
    PARALLAX — HERO BLOBS (light)
 ══════════════════════════════════════════ */
-const blobs     = document.querySelectorAll('.blob');
+const blobs = document.querySelectorAll('.blob');
 const heroLogoWrap = document.querySelector('.hero-logo-wrap');
 
 window.addEventListener('scroll', () => {
@@ -145,8 +146,8 @@ window.addEventListener('scroll', () => {
 document.querySelectorAll('.value-card, .vm-card, .why-card').forEach(card => {
   card.addEventListener('mousemove', e => {
     const rect = card.getBoundingClientRect();
-    const cx = rect.left + rect.width  / 2;
-    const cy = rect.top  + rect.height / 2;
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
     const dx = (e.clientX - cx) / rect.width;
     const dy = (e.clientY - cy) / rect.height;
     card.style.transform = `translateY(-6px) rotateY(${dx * 4}deg) rotateX(${-dy * 4}deg)`;
@@ -181,7 +182,7 @@ sections.forEach(s => sectionObs.observe(s));
 /* ══════════════════════════════════════════
    GALLERY LIGHTBOX
 ══════════════════════════════════════════ */
-const lightbox    = document.getElementById('lightbox');
+const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const lightboxCap = document.getElementById('lightbox-caption');
 
@@ -215,5 +216,5 @@ document.addEventListener('keydown', e => {
   }
 });
 
-window.openLightbox  = openLightbox;
+window.openLightbox = openLightbox;
 window.closeLightbox = closeLightbox;
